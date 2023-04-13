@@ -9,6 +9,11 @@ Before you can run the script, you need to make sure you have the following:
 - Python 3.x
 - Clone [YOLOv5 repo version 5.0](https://github.com/ultralytics/yolov5) and install dependencies by running `pip install -r requirements.txt` from within the yolov5 directory.
 
+To install YOLOv5 version 5.0
+```bash
+git clone --branch v5.0 https://github.com/ultralytics/yolov5.git
+```
+
 ## Running the Script
 
 1. Clone this repository and navigate to the `tello_yolov5` directory.
