@@ -12,6 +12,6 @@ drone = Tello()
 drone.connect()
 
 # Connect to your home WiFi
-drone.connect_to_wifi("MScA_Robotics", "drone100")
+drone.connect_to_wifi("Hangman-Home", "mscahangmancap")
 
 # reboot the drone
