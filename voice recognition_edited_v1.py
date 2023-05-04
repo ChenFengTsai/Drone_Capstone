@@ -82,7 +82,7 @@ def fly_drones_voice_3(drone1):
         land1.result()
         #land2.result()
 
-drone1 = Tello('192.168.86.27')
+drone1 = Tello('')
 drone1.connect()
 drone1.streamon()
 drone1.takeoff()
