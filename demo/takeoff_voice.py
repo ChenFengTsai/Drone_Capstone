@@ -24,7 +24,7 @@ def fly_drones_voice_1(drone1):
          command = r.recognize_google(audio).lower()
          print(command)
          
-            if "land" in command:
+         if "land" in command:
             break
          elif "apple" in command:
             drone1.takeoff()
