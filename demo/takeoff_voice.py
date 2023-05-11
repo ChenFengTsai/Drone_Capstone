@@ -17,24 +17,21 @@ def fly_drones_voice_1(drone1):
     r = sr.Recognizer()
     mic = sr.Microphone()
 
-    # Continuously listen for the oral command
-    while True:
-        with mic as source:
-            audio = r.listen(source, timeout = 10, phrase_time_limit = 3)
-        try:
+    # Listen for the oral command
+    with mic as source:
+         audio = r.listen(source, timeout = 10, phrase_time_limit = 3)
+    try:
             
-            command = r.recognize_google(audio).lower()
-            print(command)
-            if "land" in command:
-                break
-            elif "apple" in command:
-                drone1.takeoff()
-            else: 
-                print("I don't understand the command")
-        except sr.UnknownValueError:
-            pass
-        
-    
+         command = r.recognize_google(audio).lower()
+         print(command)
+         if "land" in command:
+            break
+         elif "apple" in command:
+            drone1.takeoff()
+         else: 
+            print("I don't understand the command")
+     except sr.UnknownValueError:
+         pass            
     
 drone1 = Tello('192.168.86.27')
 drone1.connect()
