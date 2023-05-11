@@ -36,7 +36,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.to(device).eval()
 
 # Connect to the Tello drone
-tello = Tello('192.168.86.32')
+tello = Tello('192.168.87.88')
 tello.connect()
 tello.streamon()
 

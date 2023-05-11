@@ -41,7 +41,7 @@ def main():
     imgsz = check_img_size(640, s=model.stride.max())
     model.to(device).eval()
 
-    tello = Tello('192.168.86.31')
+    tello = Tello('192.168.87.88')
     tello.connect()
     tello.streamon()
 
