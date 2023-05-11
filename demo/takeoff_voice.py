@@ -25,7 +25,7 @@ def fly_drones_voice_1(drone1):
          print(command)
          
          if "land" in command:
-            break
+            drone1.land()
          elif "apple" in command:
             drone1.takeoff()
          else: 
