@@ -9,8 +9,6 @@ from djitellopy import Tello
 import speech_recognition as sr
 
 
-import speech_recognition as sr
-
 class Voice_Detection:
     def __init__(self, drone):
         self.drone = drone
