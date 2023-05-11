@@ -64,7 +64,7 @@ def main():
     in_flight = False
 
     # Camera preparation
-    tello = Tello('192.168.1.211')
+    tello = Tello('192.168.87.86')
     tello.connect()
     tello.streamon()
 
@@ -100,7 +100,8 @@ def main():
     number = -1
     battery_status = -1
 
-    tello.move_down(20)
+    # tello.move_down(20)
+    tello.takeoff() # added by Pete
 
     while True:
         fps = cv_fps_calc.get()
