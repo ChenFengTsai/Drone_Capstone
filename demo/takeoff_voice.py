@@ -29,6 +29,8 @@ def fly_drones_voice_1(drone1):
                 break
             elif "apple" in command:
                 drone1.takeoff()
+            else: 
+                print("I don't understand the command")
         except sr.UnknownValueError:
             pass
         
