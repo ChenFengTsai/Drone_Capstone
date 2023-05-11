@@ -20,11 +20,11 @@ def fly_drones_voice_1(drone1):
     # Listen for the oral command
     with mic as source:
          audio = r.listen(source, timeout = 10, phrase_time_limit = 3)
-    try:
-            
+    try:   
          command = r.recognize_google(audio).lower()
          print(command)
-         if "land" in command:
+         
+            if "land" in command:
             break
          elif "apple" in command:
             drone1.takeoff()
