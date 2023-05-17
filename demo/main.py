@@ -1,14 +1,15 @@
 from djitellopy import Tello
 import speech_recognition as sr
-from demo.up_down_voice import Voice_Detection
+from up_down_voice import Voice_Detection
 
 
-def main(drone1):
+def main(drone):
     # voice detection to fly
-    vd = Voice_Detection(drone1)
+    vd = Voice_Detection(drone)
     vd.fly_drones_voice()
     
     # gesture detection to trigger object detection
+    
     
     
     # object dection to find ()
@@ -20,8 +21,8 @@ def main(drone1):
 
 if  __name__ == "__main__":
     # initilize the drone
-    drone1 = Tello('192.168.86.27')
-    drone1.connect()
-    drone1.streamon()
+    drone = Tello('192.168.86.27')
+    drone.connect()
+    drone.streamon()
     
-    main(drone1)
+    main(drone)
