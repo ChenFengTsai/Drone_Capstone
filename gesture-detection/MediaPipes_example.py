@@ -12,9 +12,10 @@ import time
 from djitellopy import Tello
 
 # Initialize MediaPipe Hands and Tello drone
+ip = '192.168.87.31'
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
-drone = Tello('192.168.87.44')
+drone = Tello(ip)
 
 # Connect to the drone
 drone.connect()
@@ -39,7 +40,7 @@ def detect_gesture(landmarks):
         return "none"
 
 # Initialize the video capture
-cap = cv2.VideoCapture('udp://192.168.87.44:11111')
+cap = cv2.VideoCapture(f'udp://{ip}:11111')
 
 last_gesture_time = time.time()
 in_air = False

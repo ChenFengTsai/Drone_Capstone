@@ -12,10 +12,16 @@ import time
 from djitellopy import Tello
 
 # Initialize MediaPipe Hands and Tello drone
-
+ip = '192.168.87.31'
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
+drone = Tello(ip)
 
+# Connect to the drone
+drone.connect()
+
+# Connect to the drone's video stream
+drone.streamon()
 
 # Define gestures and drone commands
 def detect_gesture(landmarks):
