@@ -12,7 +12,7 @@ import time
 from djitellopy import Tello
 
 # Initialize MediaPipe Hands and Tello drone
-ip = 
+ip = '192.168.86.22'
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 drone = Tello(ip)

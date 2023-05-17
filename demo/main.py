@@ -21,7 +21,7 @@ def main(drone, ip):
 
 if  __name__ == "__main__":
     # initilize the drone
-    ip = '192.168.86.27'
+    ip = '192.168.86.22'
     drone = Tello(ip)
     drone.connect()
     drone.streamon()
