@@ -13,7 +13,6 @@ class Voice_Detection:
     def __init__(self, drone):
         self.drone = drone
 
-
     def fly_drones_voice(self):
         # Create recognizer
         r = sr.Recognizer()
