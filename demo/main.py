@@ -1,7 +1,7 @@
 from djitellopy import Tello
 import speech_recognition as sr
 from voice_detection import Voice_Detection
-
+from gesture_detection import Gesture_Detection
 
 def main(drone, ip):
     # *voice detection to fly*
@@ -9,8 +9,8 @@ def main(drone, ip):
     vd.fly_drones_voice()
     
     # todo: gesture detection to trigger object detection
-    
-    
+    gd = Gesture_Detection(drone, ip)
+    gd.gesture_trigger()
     
     # todo: object dection to find ()
     
