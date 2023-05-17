@@ -30,7 +30,7 @@ def fly_drones_voice_1(drone1):
             drone1.takeoff()
          else: 
             print("I don't understand the command")
-     except sr.UnknownValueError:
+    except sr.UnknownValueError:
          pass            
     
 drone1 = Tello('192.168.86.27')

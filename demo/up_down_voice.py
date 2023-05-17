@@ -12,25 +12,44 @@ import speech_recognition as sr
 class Voice_Detection:
     def __init__(self, drone):
         self.drone = drone
-        self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+
 
     def fly_drones_voice(self):
-        with self.microphone as source:
-            audio = self.recognizer.listen(source, timeout=10, phrase_time_limit=3)
-
-        try:
-            command = self.recognizer.recognize_google(audio).lower()
+        # Create recognizer
+        r = sr.Recognizer()
+        mic = sr.Microphone()
+        
+        # Listen for the oral command
+        with mic as source:
+            audio = r.listen(source, timeout = 10, phrase_time_limit = 3)
+        try:   
+            command = r.recognize_google(audio).lower()
             print(command)
-
+            
             if "land" in command:
                 self.drone.land()
-            elif "takeoff" in command:
+            elif "apple" in command:
                 self.drone.takeoff()
-            else:
+            else: 
                 print("I don't understand the command")
         except sr.UnknownValueError:
-            pass
+            pass   
+     
+        # with self.microphone as source:
+        #     audio = self.recognizer.listen(source, timeout=10, phrase_time_limit=3)
+
+        # try:
+        #     command = self.recognizer.recognize_google(audio).lower()
+        #     print(command)
+
+        #     if "land" in command:
+        #         self.drone.land()
+        #     elif "takeoff" in command:
+        #         self.drone.takeoff()
+        #     else:
+        #         print("I don't understand the command")
+        # except sr.UnknownValueError:
+        #     pass
 
 
 
