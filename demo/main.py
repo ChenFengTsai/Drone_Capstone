@@ -3,7 +3,7 @@ import speech_recognition as sr
 from up_down_voice import Voice_Detection
 
 
-def main(drone):
+def main(drone, ip):
     # voice detection to fly
     vd = Voice_Detection(drone)
     vd.fly_drones_voice()
@@ -21,8 +21,9 @@ def main(drone):
 
 if  __name__ == "__main__":
     # initilize the drone
-    drone = Tello('192.168.86.27')
+    ip = '192.168.86.27'
+    drone = Tello(ip)
     drone.connect()
     drone.streamon()
     
-    main(drone)
+    main(drone, ip)
