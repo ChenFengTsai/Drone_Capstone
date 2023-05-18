@@ -30,7 +30,7 @@ if  __name__ == "__main__":
     config.read('config.ini')
     wifi_name = config.get('wifi', 'wifi_name')
     wifi_password = config.get('wifi', 'wifi_password')
-    ip = config.get('wifi', '192.168.87.31')
+    ip = config.get('wifi', 'ip')
     
     # initilize the drone
     drone = Tello(ip)
