@@ -2,6 +2,7 @@ from djitellopy import Tello
 import speech_recognition as sr
 from voice_detection import Voice_Detection
 from gesture_detection import Gesture_Detection
+from object_detection import Object_Tracking
 import configparser
 
 def main(drone, ip):
@@ -15,10 +16,10 @@ def main(drone, ip):
     gd.gesture_trigger()
     print('done')
     
-    # todo: object dection to find ()
-    
-    
-    
+    # todo: object dection to find (bottle)
+    ot = Object_Tracking(drone, ip)
+    ot.track_object()
+    print('object tracking done')
     
     # *voice detection to land*
     vd = Voice_Detection(drone)
