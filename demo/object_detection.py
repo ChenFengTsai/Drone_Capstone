@@ -5,13 +5,14 @@ import numpy as np
 import time
 from djitellopy import Tello
 import configparser
+from voice_detection import Voice_Detection
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-yolov5_path = config.get('wifi', 'yolov5_path')
+#config = configparser.ConfigParser()
+#config.read('config.ini')
+#yolov5_path = config.get('wifi', 'yolov5_path')
 
-sys.path.append(yolov5_path)
-
+sys.path.append('./')
+from yolov5 import *
 from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import check_img_size, non_max_suppression, scale_coords
 from yolov5.utils.datasets import letterbox
@@ -27,6 +28,17 @@ class Object_Tracking:
         self.bottle_detected = False
         self.bottle_center = None
         self.box_size = None
+
+    def initialize_drone(self):
+        self.model = attempt_load(self.weights, map_location=self.device)
+        self.imgsz = check_img_size(640, s=self.model.stride.max())
+        self.model.to(self.device).eval()
+
+        #self.drone.connect()
+        #self.drone.streamon()
+        print(f"Battery life percentage: {self.drone.get_battery()}%")
+        #self.drone.takeoff()
+        #time.sleep(5)
 
     def process_frame(self, frame):
         img = np.array(frame)
@@ -48,7 +60,7 @@ class Object_Tracking:
         self.box_size = None
         for *xyxy, conf, cls in reversed(pred[0]):
             label = f'{self.model.names[int(cls)]} {conf:.2f}'
-            if label.startswith('bottle'):
+            if label.startswith('cup'):
                 self.bottle_detected = True
                 x_center = (xyxy[0] + xyxy[2]) / 2
                 y_center = (xyxy[1] + xyxy[3]) / 2
@@ -63,8 +75,19 @@ class Object_Tracking:
         return frame
 
     def track_object(self):
+        self.model = attempt_load(self.weights, map_location=self.device)
+        self.imgsz = check_img_size(640, s=self.model.stride.max())
+        self.model.to(self.device).eval()
+
+        self.drone.connect()
+        self.drone.streamon()
+        #print(f"Battery life percentage: {self.drone.get_battery()}%")
+        #self.drone.takeoff()
+        time.sleep(3)
+        #self.drone.rotate_clockwise(60)
+        #self.drone.takeoff()
         found_bottle = False
-        while not found_bottle:
+        while not self.bottle_detected:
             self.drone.rotate_clockwise(45)
             time.sleep(3)
 
@@ -112,6 +135,11 @@ class Object_Tracking:
                     elif self.bottle_center[1] > 240:
                         self.drone.move_down(20)
                     self.drone.move_backward(20)
+
+                print('Voice detection started. Listening...')
+                vd2 = Voice_Detection(self.drone)
+                vd2.fly_drones_voice()
+                print('Voice detection done')
 
             cv2.imshow('DJI Tello Live Object Tracking', frame)
 

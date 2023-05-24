@@ -10,6 +10,7 @@ import mediapipe as mp
 import numpy as np
 import time
 from djitellopy import Tello
+from object_detection import Object_Tracking
 
 # Initialize MediaPipe Hands and Tello drone
 class Gesture_Detection:
@@ -62,7 +63,13 @@ class Gesture_Detection:
                         current_time = time.time()
                         if current_time - last_gesture_time > 5:  # 5 seconds delay between gestures
                             if gesture == "thumbs_up" and not in_air:
-                                self.drone.takeoff()
+                                #self.drone.takeoff()
+                                print('Thumbs up detected. Object tracking initialized')
+                                time.sleep(2)
+                                cap.release()
+                                self.drone.streamoff()
+                                ot = Object_Tracking(self.drone)
+                                ot.track_object()
                                 last_gesture_time = current_time
                                 in_air = True
                             elif gesture == "thumbs_down" and in_air:

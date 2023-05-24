@@ -23,9 +23,9 @@ class Voice_Detection:
             audio = r.listen(source, timeout = 10, phrase_time_limit = 3)
         try:   
             command = r.recognize_google(audio).lower()
-            print(command)
+            print(f'Command found: {command}')
             
-            if "land" in command:
+            if "chicken" in command:
                 self.drone.land()
             elif "apple" in command:
                 self.drone.takeoff()
