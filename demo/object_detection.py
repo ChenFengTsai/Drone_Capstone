@@ -4,8 +4,13 @@ import torch
 import numpy as np
 import time
 from djitellopy import Tello
+import configparser
 
-sys.path.append('/Users/nicolasferreira/Documents/UChicago/Spring 2023/Capstone I/yolov5')
+config = configparser.ConfigParser()
+config.read('config.ini')
+yolov5_path = config.get('wifi', 'yolov5_path')
+
+sys.path.append(yolov5_path)
 
 from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import check_img_size, non_max_suppression, scale_coords
